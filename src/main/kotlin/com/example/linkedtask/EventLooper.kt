@@ -46,7 +46,7 @@ class EventLooper(private val dispatcher: Dispatcher) : Runnable {
     }
 
     fun launch() {
-        dispatcher.start(this)
+        dispatcher.start(eventLooper = this)
     }
 
     fun join() {
