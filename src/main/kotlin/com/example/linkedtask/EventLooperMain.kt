@@ -2,7 +2,7 @@ package com.example.linkedtask
 
 fun main(args: Array<String>) {
     val threads = 10
-    val eventLooper = EventLooper(Dispatcher.FixedDispatcher(threads = threads))
+    val eventLooper = EventLooper(dispatcher = Dispatcher.FixedDispatcher(threads = threads))
     for (i in 0..5) {
         eventLooper.linkedTask(
             {
