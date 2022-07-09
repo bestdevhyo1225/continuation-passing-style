@@ -8,14 +8,17 @@ fun main(args: Array<String>) {
             when (it.step) {
                 0 -> {
                     println("$i-0 ${Thread.currentThread().id}")
+                    Thread.sleep(i * 100L)
                     it.resume(step = 1)
                 }
                 1 -> {
                     println("$i-1 ${Thread.currentThread().id}")
+                    Thread.sleep(i * 100L)
                     it.resume(step = 2)
                 }
                 2 -> {
                     println("$i-2 ${Thread.currentThread().id}")
+                    Thread.sleep(i * 100L)
                     it.complete()
                 }
             }
