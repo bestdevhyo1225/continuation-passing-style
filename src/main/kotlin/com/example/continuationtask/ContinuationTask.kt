@@ -6,7 +6,7 @@ class ContinuationTask(
     block: (Continuation) -> Unit
 ) : Runnable {
 
-    private val task = Task(block)
+    private val task = Task(run = block)
 
     init {
         if (!isLazy) launch()

@@ -9,12 +9,12 @@ class SerialTask(private val dispatcher: Dispatcher, vararg blocks: (Controller)
             throw Throwable("blocks is empty")
         }
 
-        var prev = Task(blocks.first())
+        var prev = Task(run = blocks.first())
         this.task = prev
         prev.isStarted = Status.MARK
 
         for (i in 1..blocks.lastIndex) {
-            val next = Task(blocks[i])
+            val next = Task(run = blocks[i])
             prev.next = next
             prev = next
         }
