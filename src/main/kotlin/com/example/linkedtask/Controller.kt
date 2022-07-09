@@ -1,7 +1,5 @@
 package com.example.linkedtask
 
-import com.example.linkedtask.Task
-
 class Controller internal constructor(private val task: Task) {
 
     val data get() = task.result
