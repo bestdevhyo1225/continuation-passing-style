@@ -39,6 +39,6 @@ class SerialTask(private val dispatcher: Dispatcher, vararg blocks: (Controller)
     }
 
     fun launch() {
-        dispatcher.start(this)
+        dispatcher.start(serialTask = this)
     }
 }

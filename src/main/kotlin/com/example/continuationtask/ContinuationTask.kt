@@ -25,6 +25,6 @@ class ContinuationTask(
     }
 
     fun launch() {
-        dispatcher.start(this)
+        dispatcher.start(continuationTask = this)
     }
 }
