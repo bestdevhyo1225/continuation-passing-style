@@ -3,10 +3,10 @@ package com.example.continuationtask
 class ContinuationTask(
     private val dispatcher: Dispatcher,
     isLazy: Boolean,
-    block: (Continuation) -> Unit
+    func: (Continuation) -> Unit
 ) : Runnable {
 
-    private val task = Task(run = block)
+    private val task = Task(func = func)
 
     init {
         if (!isLazy) launch()
@@ -18,7 +18,7 @@ class ContinuationTask(
             if (task.isCompleted == Status.MARK) break
             if (task.isStarted == Status.READY) {
                 task.isStarted = Status.CONFIRM
-                task.run(task.continuation)
+                task.func(task.continuation)
             }
         }
         task.continuation.failed?.let { throw it }
