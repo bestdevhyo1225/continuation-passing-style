@@ -1,7 +1,6 @@
 package com.example.linkedtask
 
-import java.util.LinkedList
-import java.util.Queue
+import java.util.*
 
 class EventLooper(private val dispatcher: Dispatcher) : Runnable {
 
@@ -22,7 +21,7 @@ class EventLooper(private val dispatcher: Dispatcher) : Runnable {
                     }
                 } else tasks.poll()?.let { current ->
                     currentTask = current
-                    current.func(Controller(current))
+                    current.func(Controller(task = current))
                 }
             }
         }
