@@ -22,7 +22,7 @@ class EventLooper(private val dispatcher: Dispatcher) : Runnable {
                     }
                 } else tasks.poll()?.let { current ->
                     currentTask = current
-                    current.run(Controller(current))
+                    current.func(Controller(current))
                 }
             }
         }
@@ -31,12 +31,12 @@ class EventLooper(private val dispatcher: Dispatcher) : Runnable {
     fun linkedTask(vararg blocks: (Controller) -> Unit) {
         if (blocks.isEmpty()) return
         synchronized(tasks) {
-            var prev = Task(run = blocks.first())
+            var prev = Task(func = blocks.first())
             tasks.add(prev)
 
             // 루프가 끝나도 tasks Queue 에는 하나만 들어있다.
             for (i in 1..blocks.lastIndex) {
-                val task = Task(run = blocks[i])
+                val task = Task(func = blocks[i])
                 // 현재 prev.next 의 task 를 지정한다.
                 prev.next = task
                 // 다음 인덱스의 task 설정을 위해서 현재 task 를 prev 로 변경한다.
